@@ -1,0 +1,36 @@
+######################
+# Author: Tejasvi
+# Date:  08-10-2023
+#
+# version: v1
+#
+# This scrpt will report teh AWS resource usage
+# ############################
+
+#enable script in debug mode
+set -x
+
+#AWS S3
+#AWS EC2
+#AWS Lambda
+#AWS IAM Users
+
+
+#List S3 buckets
+echo "print list of S3 buckets"
+
+#all output save in a file names resourceTracker
+aws s3 ls > resourceTracker
+
+#List EC2 instances
+echo "print list of EC2 instances"
+aws ec2 describe-instances | jq '.Reservations[].Instances[].Architecture'
+
+#List AWS Lambda functions
+echo "print list of lambda functions"
+aws lambda list-functions
+
+#List IAM users
+echo "print list of IAM users"
+aws iam list-users
+
